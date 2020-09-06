@@ -1,0 +1,28 @@
+---
+title: "Just another assignment"
+author: "vydevyatnikov"
+date: "06 09 2020"
+output: 
+  html_document:
+    keep_md: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# MAP 
+
+```{r}
+library(leaflet)
+df <- data.frame(lat = c(29.9795, 32.5348, 37.9498, 37.6383, 37.0378, 36.4513, 31.2143), 
+                 lng = c(31.1341, 44.4308, 27.3638, 21.6300, 27.4241, 28.2278, 29.8850))
+iconSet <- iconList(Pyramid = makeIcon("https://img.wallpapersafari.com/desktop/1920/1080/7/4/96Aoyc.jpg", iconWidth = 50, iconHeight = 25), 
+                    Hanging_Gardens = makeIcon("https://img.wallpapersafari.com/desktop/1920/1080/57/58/pN1A7j.jpg", iconWidth = 50, iconHeight = 25),
+                    Temple_of_Artemis = makeIcon("https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Templo-Artemisa-Efeso-2017.jpg/1280px-Templo-Artemisa-Efeso-2017.jpg", iconWidth = 50, iconHeight = 25),
+                    Statue_of_Zeus = makeIcon("https://upload.wikimedia.org/wikipedia/commons/6/66/Le_Jupiter_Olympien_ou_l%27art_de_la_sculpture_antique.jpg", iconWidth = 50, iconHeight = 25),
+                    Mausoleum_at_Halicarnassus = makeIcon("https://www.wallpaperup.com/uploads/wallpapers/2015/05/28/701339/7cc6c5f860c55ebd46c2f839d1c2e3dc.jpg", iconWidth = 50, iconHeight = 25),
+                    Colossus_of_Rhodes = makeIcon("https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Colosse_de_Rhodes_%28Barclay%29.jpg/800px-Colosse_de_Rhodes_%28Barclay%29.jpg", iconWidth = 50, iconHeight = 25),
+                    Lighthouse_of_Alexandria = makeIcon("https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Lighthouse_-_Thiersch.png/1280px-Lighthouse_-_Thiersch.png", iconWidth = 50, iconHeight = 25))
+df %>% leaflet() %>% addTiles(attribution = "06.09.2020") %>% addMarkers(icon = iconSet, popup = names(iconSet))
+```
